@@ -11,9 +11,12 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/corey/.oh-my-zsh"
 
-export PATH="$PATH:/Users/corey/work/terraform"
+# export PATH="/Users/corey/work/terraform:$PATH"
 
 export GOPATH=$HOME/go
+
+# Initialize rbenv 
+eval "$(rbenv init -)"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -114,4 +117,5 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-source ~/dotfiles/aliases
+# source ~/dotfiles/aliasesexport PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
