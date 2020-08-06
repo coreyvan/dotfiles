@@ -117,5 +117,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# source ~/dotfiles/aliasesexport PATH="/usr/local/opt/mysql-client/bin:$PATH"
+# Source aliases
+source ~/dotfiles/aliases
+
 export PATH="$GOPATH/bin:$PATH"
