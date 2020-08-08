@@ -20,7 +20,7 @@ xcode-select --install
 echo "Checking for, or Installing Homebrew..."
 if [ -z `command -v brew` ]; then
     echo "Brew is missing! Installing it..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi;
 
 ###############################################################################
@@ -43,7 +43,7 @@ brew upgrade
 echo "Homebrew: updating unix tools..."
 brew install zsh
 brew install homebrew/cask-fonts/font-fira-mono-for-powerline
-
+brew install homebrew/cask-fonts/font-jetbrains-mono
 
 ###############################################################################
 # Install binaries and other packages
@@ -51,15 +51,16 @@ brew install homebrew/cask-fonts/font-fira-mono-for-powerline
 echo "Homebrew: installing binaries and other packages..."
 brew install git
 brew install httpie
-brew install mackup
+#brew install mackup
 brew install mas
 brew install nginx
-brew install node
-brew install nvm
+#brew install node
+#brew install nvm
 brew install rename
 brew install tree
-brew install yarn
-brew install go
+brew install protobuf
+#brew install yarn
+#brew install go
 
 ###############################################################################
 # Run Homebrew cleanup to remove installation/cached files
@@ -92,6 +93,6 @@ brew cask install whatsapp
 ###############################################################################
 # Cleanup
 ###############################################################################
-#brew cask cleanup
+brew cask cleanup
 
 echo "macOS Config, Dev Tools, Apps are Done Setup!"
