@@ -1,3 +1,6 @@
+.PHONY: all
+all: test dotfiles
+
 .PHONY: bin
 bin: ## Installs the bin directory files.
 	# add aliases for things in bin
