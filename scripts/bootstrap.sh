@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 ###############################################################################
 # bootstrap
@@ -18,7 +18,7 @@ xcode-select --install
 # Check for Homebrew, else install
 ###############################################################################
 echo "Checking for, or Installing Homebrew..."
-if [ -z `command -v brew` ]; then
+if [ -z "$(command -v brew)" ]; then
     echo "Brew is missing! Installing it..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi;
@@ -68,13 +68,6 @@ brew install protobuf
 echo "Homebrew: cleaning up..."
 brew cleanup
 
-
-###############################################################################
-# Install Node Packages with NPM
-###############################################################################
-echo "Node: installing Yarn/NPM packages…"
-yarn global add @squarespace/server
-
 ###############################################################################
 # Install applications with Homebrew Cask
 ###############################################################################
@@ -88,6 +81,8 @@ brew cask install slack
 brew cask install spotify
 brew cask install visual-studio-code
 brew cask install whatsapp
+brew cask install bloomrpc
+brew cask install wireshark
 
 
 ###############################################################################

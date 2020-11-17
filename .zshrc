@@ -91,21 +91,24 @@ source $ZSH/oh-my-zsh.sh
 # User configuration #
 ######################
 
+set -o GLOB_SUBST
+
 ###########
 # Golang  #
 ###########
 
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
+export GOPRIVATE=gitlab.com/conquestcyber
 
 ###########
 # Aliases #
 ###########
 
-. ~/dotfiles/aliases
+. ~/.alias
 
 #############
 # Functions #
 #############
 
-. ~/dotfiles/.functions
+. ~/.functions
