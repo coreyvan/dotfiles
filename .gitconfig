@@ -2,3 +2,5 @@
 [user]
 	email = coreyvan@protonmail.com
 	name = Corey Van Woert
+[core]
+	excludesFile = ~/.gitglobalignore
