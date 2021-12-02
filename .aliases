@@ -10,17 +10,14 @@
 ###############################################################################
 
 # Path Shortcuts
-alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias dev='cd ~/code'
-alias armed='cd ~/code/armed-v2'
-alias gql='cd ~/code/armed-v2/armed-gql'
-alias hipaa='cd ~/code/armed-v2/hipaa'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ~='cd ~'
+alias cdr="cd $(git rev-parse --show-toplevel)"
 
 # Command/App Shortcuts
 alias h="history"

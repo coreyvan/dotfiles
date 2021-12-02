@@ -59,6 +59,7 @@ brew install nginx
 brew install rename
 brew install tree
 brew install protobuf
+brew install azure-cli
 #brew install yarn
 #brew install go
 

@@ -17,6 +17,13 @@ dotfiles: shellcheck ## Installs dotfiles in home directory
 	done; \
 	ln -fn $(CURDIR)/.gitglobalignore $(HOME)/.gitignore;
 
+.PHONY: bin
+bin: shellcheck
+	for file in $(shell find $(CURDIR)/bin -type f); do \
+		f=$$(basename $$file;); \
+		sudo ln -sf $$file /usr/local/bin/$$f; \
+	done
+
 .PHONY: shellcheck
 shellcheck: ## Runs shellcheck tests on scripts
 	docker run --rm -i $(DOCKER_FLAGS) \

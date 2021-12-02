@@ -1,9 +1,12 @@
 # This is Git's per-user configuration file.
 [user]
-	email = coreyvan@protonmail.com
+	email = nunya@business.com
 	name = Corey Van Woert
 [core]
 	excludesFile = ~/.gitglobalignore
 
 [pull]
 	rebase = true
+
+[url "git@gitlab.com:"]
+	insteadOf = "https://gitlab.com/"
