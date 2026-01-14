@@ -52,14 +52,14 @@ echo "Homebrew: installing binaries and other packages..."
 brew install git
 brew install httpie
 #brew install mackup
-brew install mas
-brew install nginx
+#brew install mas
+#brew install nginx
 #brew install node
 #brew install nvm
 brew install rename
 brew install tree
 brew install protobuf
-brew install azure-cli
+#brew install azure-cli
 #brew install yarn
 #brew install go
 
@@ -73,22 +73,20 @@ brew cleanup
 # Install applications with Homebrew Cask
 ###############################################################################
 echo "Homebrew Cask: installing apps..."
-brew cask install 1password
-brew cask install docker
-brew cask install firefox
-brew cask install iterm2
-brew cask install insomnia
-brew cask install slack
-brew cask install spotify
-brew cask install visual-studio-code
-brew cask install whatsapp
-brew cask install bloomrpc
-brew cask install wireshark
-
+#brew install --cask 1password
+#brew install --cask docker
+#brew install --cask firefox
+brew install --cask iterm2
+brew install --cask slack
+brew install --cask spotify
+brew install --cask visual-studio-code
+brew install --cask bloomrpc
+brew install --cask wireshark
+brew install --cask postman
 
 ###############################################################################
 # Cleanup
 ###############################################################################
-brew cask cleanup
+brew cleanup
 
 echo "macOS Config, Dev Tools, Apps are Done Setup!"

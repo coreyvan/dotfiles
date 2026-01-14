@@ -4,3 +4,10 @@
 .idea
 .env
 .graphqlconfig
+http/
+.cursorrules
+CLAUDE.md
+**/.claude/
+.mcp.json
+mcp-rules.log
+.npmrc

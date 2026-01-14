@@ -1,6 +1,6 @@
 # This is Git's per-user configuration file.
 [user]
-	email = nunya@business.com
+	email = corey@telegraph.io
 	name = Corey Van Woert
 [core]
 	excludesFile = ~/.gitglobalignore
@@ -10,3 +10,10 @@
 
 [url "git@gitlab.com:"]
 	insteadOf = "https://gitlab.com/"
+
+[url "git@github.com:"]
+	insteadOf = "https://github.com/"
+[fetch]
+	prune = true
+[alias]
+	cleanup = !git fetch -p && git branch -vv | grep \": gone]\" | awk \"{print \\$1}\" | xargs -r git branch -D
