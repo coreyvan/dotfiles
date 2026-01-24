@@ -50,18 +50,11 @@ brew install homebrew/cask-fonts/font-jetbrains-mono
 ###############################################################################
 echo "Homebrew: installing binaries and other packages..."
 brew install git
-brew install httpie
-#brew install mackup
-#brew install mas
-#brew install nginx
-#brew install node
-#brew install nvm
 brew install rename
 brew install tree
-brew install protobuf
-#brew install azure-cli
-#brew install yarn
-#brew install go
+brew install fzf
+brew install zoxide
+brew install direnv
 
 ###############################################################################
 # Run Homebrew cleanup to remove installation/cached files
@@ -74,13 +67,14 @@ brew cleanup
 ###############################################################################
 echo "Homebrew Cask: installing apps..."
 #brew install --cask 1password
-#brew install --cask docker
+brew install --cask docker
+brew install --cask orbstack
 #brew install --cask firefox
 brew install --cask iterm2
-brew install --cask slack
-brew install --cask spotify
+# brew install --cask slack
+# brew install --cask spotify
 brew install --cask visual-studio-code
-brew install --cask bloomrpc
+# brew install --cask bloomrpc
 brew install --cask wireshark
 brew install --cask postman
 

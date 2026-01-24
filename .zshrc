@@ -37,7 +37,6 @@ zinit light Aloxaf/fzf-tab
 # Add in snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
 zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
@@ -45,6 +44,7 @@ zinit snippet OMZP::command-not-found
 
 # Load completions
 autoload -Uz compinit && compinit
+zinit cdreplay -q
 
 # Keybindings
 bindkey -e
@@ -53,7 +53,7 @@ bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 
 # History
-HISTSIZE=5000
+HISTSIZE=50000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
@@ -65,6 +65,13 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+# Useful shell options
+setopt AUTO_CD              # cd by typing directory name
+setopt CORRECT              # spell correction for commands
+setopt CDABLE_VARS          # cd into named directories
+setopt AUTO_PUSHD           # push directories onto stack
+setopt PUSHD_IGNORE_DUPS    # no duplicates in dir stack
+
 # Completion Styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -72,16 +79,14 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# Fuzzy matching
-source <(fzf --zsh)
-
-
 ######################
 # User configuration #
 ######################
 
 set -o GLOB_SUBST
-export AWS_PROFILE=iac
+
+# LS_COLORS for GNU ls and completion styling
+export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
 export PATH="/Applications/WebStorm.app/Contents/MacOS/:$PATH"
 export PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
 
@@ -96,7 +101,6 @@ export PATH="$GOPATH/bin:$PATH"
 # Python  #
 ###########
 
-export PATH="/opt/homebrew/lib/python3.11/site-packages:$PATH"
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
 
@@ -118,16 +122,7 @@ export PATH=$HOME/code/flutter/bin:$PATH
 
 . ~/.functions
 
-# Fuzzy matching
-source <(fzf --zsh)
-
-# zoxide
-eval "$(zoxide init zsh)"
-
-eval "$(direnv hook zsh)"
-
-# Created by `pipx` on 2025-02-21 18:18:39
-export PATH="$PATH:/Users/corey/.local/bin"
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# Tool initializations (with guards)
+command -v fzf &>/dev/null && source <(fzf --zsh)
+command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
+command -v direnv &>/dev/null && eval "$(direnv hook zsh)"

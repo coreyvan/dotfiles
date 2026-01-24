@@ -2,7 +2,7 @@
 
 # Create a new directory and enter it
 mk() {
-  mkdir -p "$@" && cd "$@" || exit
+  mkdir -p "$@" && cd "$@" || return
 }
 
 # Open man page as PDF
@@ -19,22 +19,7 @@ tmpd() {
 	else
 		dir=$(mktemp -d -t "${1}.XXXXXXXXXX")
 	fi
-	cd "$dir" || exit
-}
-
-__git_prompt_git() {
-  GIT_OPTIONAL_LOCKS=0 command git "$@"
-}
-
-git_current_branch() {
-  local ref
-  ref=$(__git_prompt_git symbolic-ref --quiet HEAD 2> /dev/null)
-  local ret=$?
-  if [[ $ret != 0 ]]; then
-    [[ $ret == 128 ]] && return  # no git repo.
-    ref=$(__git_prompt_git rev-parse --short HEAD 2> /dev/null) || return
-  fi
-  echo ${ref#refs/heads/}
+	cd "$dir" || return
 }
 
 # Determine size of a file or total size of a directory
@@ -51,4 +36,42 @@ fs() {
 	else
 		du $arg -- .[^.]* *
 	fi
+}
+
+# Extract any archive
+extract() {
+  if [ -f "$1" ]; then
+    case $1 in
+      *.tar.bz2) tar xjf "$1" ;;
+      *.tar.gz)  tar xzf "$1" ;;
+      *.tar.xz)  tar xJf "$1" ;;
+      *.bz2)     bunzip2 "$1" ;;
+      *.gz)      gunzip "$1" ;;
+      *.tar)     tar xf "$1" ;;
+      *.tbz2)    tar xjf "$1" ;;
+      *.tgz)     tar xzf "$1" ;;
+      *.zip)     unzip "$1" ;;
+      *.Z)       uncompress "$1" ;;
+      *.7z)      7z x "$1" ;;
+      *.rar)     unrar x "$1" ;;
+      *)         echo "Cannot extract '$1': unknown format" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# What's using this port?
+port() {
+  lsof -i ":$1"
+}
+
+# Quick file backup
+backup() {
+  cp "$1" "$1.bak.$(date +%Y%m%d%H%M%S)"
+}
+
+# Git clone and cd into it
+gclone() {
+  git clone "$1" && cd "$(basename "$1" .git)" || return
 }

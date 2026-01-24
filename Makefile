@@ -10,7 +10,7 @@ bin: ## Installs the bin directory files.
 	done
 
 .PHONY: dotfiles
-dotfiles: shellcheck ## Installs dotfiles in home directory
+dotfiles: ## Installs dotfiles in home directory
 	for file in $(shell find $(CURDIR) -name ".*" -not -name ".gitignore" -not -name ".git"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
